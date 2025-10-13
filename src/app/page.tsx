@@ -1,8 +1,10 @@
+import { TextLoop } from "@/components/core/text-loop";
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
+import { AuroraText } from "@/components/ui/aurora-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
@@ -18,14 +20,57 @@ export default function Page() {
         <div className="mx-auto w-full max-w-[1600px] space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
+              <BlurFade delay={BLUR_FADE_DELAY}>
+                <div className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground dark:text-white">
+                  <span>Hi,&nbsp;</span>
+                  <AuroraText className="inline">
+                    {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
+                  </AuroraText>
+                  <span> 👋&nbsp;</span>
+                </div>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY}>
+                <div className="inline-flex whitespace-pre-wrap text-xl font-medium tracking-tight text-muted-foreground dark:text-white sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl">
+                  I'm Specialist On{"  "}
+                  <TextLoop
+                    className="overflow-y-clip"
+                    transition={{
+                      type: "spring",
+                      stiffness: 900,
+                      damping: 80,
+                      mass: 10,
+                    }}
+                    variants={{
+                      initial: {
+                        y: 20,
+                        rotateX: 90,
+                        opacity: 0,
+                        filter: "blur(4px)",
+                      },
+                      animate: {
+                        y: 0,
+                        rotateX: 0,
+                        opacity: 1,
+                        filter: "blur(0px)",
+                      },
+                      exit: {
+                        y: -20,
+                        rotateX: -90,
+                        opacity: 0,
+                        filter: "blur(4px)",
+                      },
+                    }}
+                  >
+                    <span className="text-[#48dbfb]">UI / UX Design</span>
+                    <span className="text-[#48dbfb]">Product Design</span>
+                    <span className="text-[#48dbfb]">Frontend Development</span>
+                    <span className="text-[#48dbfb]">Backend Development</span>
+                    <span className="text-[#48dbfb]">Cloud Engineering</span>
+                  </TextLoop>
+                </div>
+              </BlurFade>
               <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ").slice(0, 1)} 👋`}
-              />
-              <BlurFadeText
-                className="max-w-[1000px] md:text-xl"
+                className="pt-3  md:text-md text-sm text-muted-foreground"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
