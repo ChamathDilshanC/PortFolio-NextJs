@@ -7,9 +7,9 @@ import { ResumeCard } from "@/components/resume-card";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Highlighter } from "@/components/ui/highlighter";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -17,11 +17,11 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 mx-auto px-4 sm:px-6 lg:px-8">
       <section id="hero">
-        <div className="mx-auto w-full max-w-[1600px] space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
+        <div className="mx-auto w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl space-y-6 md:space-y-8">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
+            <div className="flex-col flex flex-1 space-y-3 md:space-y-4">
               <BlurFade delay={BLUR_FADE_DELAY}>
-                <div className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-foreground dark:text-white">
+                <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-foreground dark:text-white">
                   <span>Hi,&nbsp;</span>
                   <AuroraText className="inline">
                     {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
@@ -30,7 +30,7 @@ export default function Page() {
                 </div>
               </BlurFade>
               <BlurFade delay={BLUR_FADE_DELAY}>
-                <div className="inline-flex whitespace-pre-wrap text-xl font-medium tracking-tight text-muted-foreground dark:text-white sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl">
+                <div className="inline-flex flex-wrap whitespace-pre-wrap text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-tight text-muted-foreground dark:text-white h-[2.5rem] md:h-[3rem] lg:h-[3.5rem] xl:h-[4rem]">
                   I'm Specialist On{"  "}
                   <TextLoop
                     className="overflow-y-clip"
@@ -70,16 +70,18 @@ export default function Page() {
                 </div>
               </BlurFade>
               <BlurFadeText
-                className="pt-3  md:text-md text-sm text-muted-foreground"
+                className="pt-2 md:pt-3 text-sm md:text-base lg:text-md text-muted-foreground max-w-full"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
+              <div className="flex justify-center md:justify-end">
+                <Avatar className="size-20 md:size-24 lg:size-28 border">
+                  <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                  <AvatarFallback>{DATA.initials}</AvatarFallback>
+                </Avatar>
+              </div>
             </BlurFade>
           </div>
         </div>
@@ -89,9 +91,20 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.summary}
-          </Markdown>
+          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <p>
+              {DATA.summary.parts.intro}
+              <span className="dark:text-white">
+                <Highlighter action="highlight" color="#48dbfb">
+                  {DATA.summary.parts.role}
+                </Highlighter>
+              </span>
+              {DATA.summary.parts.middle}
+              {DATA.summary.parts.education}
+
+              {DATA.summary.parts.outro}
+            </p>
+          </div>
         </BlurFade>
       </section>
       <section id="work">
