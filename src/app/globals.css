@@ -67,6 +67,10 @@
   .theme {
         --animate-aurora: aurora 8s ease-in-out infinite alternate;
         --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
+        --animate-gradient: gradient 8s linear infinite;
+        --animate-shiny-text: shiny-text 8s infinite;
+        --animate-marquee: marquee var(--duration) infinite linear;
+        --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
     }
   }
 
@@ -192,6 +196,51 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
         }
   50%, 100% {
     opacity: 0;
+        }
+    }
+  @keyframes gradient {
+  to {
+    background-position: var(--bg-size, 300%) 0;
+        }
+    }
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
+        }
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
+        }
+    }
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+        }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+        }
+    }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+        }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+        }
+    }
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+        }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+        }
+    }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+        }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
         }
     }
 }

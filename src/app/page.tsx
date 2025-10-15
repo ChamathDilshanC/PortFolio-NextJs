@@ -1,94 +1,24 @@
-import { TextLoop } from "@/components/core/text-loop";
 import { HackathonCard } from "@/components/hackathon-card";
+import { Marquee3D } from "@/components/magicui/3DMarquee";
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
-import { AuroraText } from "@/components/ui/aurora-text";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Highlighter } from "@/components/ui/highlighter";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-
-const BLUR_FADE_DELAY = 0.04;
+import { Aboutpage } from "./Pages/About";
+import HomePage from "./Pages/Home";
+const BLUR_FADE_DELAY = 0.06;
 
 export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 mx-auto px-4 sm:px-6 lg:px-8">
       <section id="hero">
-        <div className="mx-auto w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl space-y-6 md:space-y-8">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
-            <div className="flex-col flex flex-1 space-y-3 md:space-y-4">
-              <BlurFade delay={BLUR_FADE_DELAY}>
-                <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-foreground dark:text-white">
-                  <span>Hi,&nbsp;</span>
-                  <AuroraText className="inline">
-                    {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
-                  </AuroraText>
-                  <span> 👋&nbsp;</span>
-                </div>
-              </BlurFade>
-              <BlurFade delay={BLUR_FADE_DELAY}>
-                <div className="inline-flex flex-wrap whitespace-pre-wrap text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-tight text-muted-foreground dark:text-white h-[2.5rem] md:h-[3rem] lg:h-[3.5rem] xl:h-[4rem]">
-                  I'm Specialist On{"  "}
-                  <TextLoop
-                    className="overflow-y-clip"
-                    transition={{
-                      type: "spring",
-                      stiffness: 900,
-                      damping: 80,
-                      mass: 10,
-                    }}
-                    variants={{
-                      initial: {
-                        y: 20,
-                        rotateX: 90,
-                        opacity: 0,
-                        filter: "blur(4px)",
-                      },
-                      animate: {
-                        y: 0,
-                        rotateX: 0,
-                        opacity: 1,
-                        filter: "blur(0px)",
-                      },
-                      exit: {
-                        y: -20,
-                        rotateX: -90,
-                        opacity: 0,
-                        filter: "blur(4px)",
-                      },
-                    }}
-                  >
-                    <span className="text-[#48dbfb]">UI / UX Design</span>
-                    <span className="text-[#48dbfb]">Product Design</span>
-                    <span className="text-[#48dbfb]">Frontend Development</span>
-                    <span className="text-[#48dbfb]">Backend Development</span>
-                    <span className="text-[#48dbfb]">Cloud Engineering</span>
-                  </TextLoop>
-                </div>
-              </BlurFade>
-              <BlurFadeText
-                className="pt-2 md:pt-3 text-sm md:text-base lg:text-md text-muted-foreground max-w-full"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="flex justify-center md:justify-end">
-                <Avatar className="size-20 md:size-24 lg:size-28 border">
-                  <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                  <AvatarFallback>{DATA.initials}</AvatarFallback>
-                </Avatar>
-              </div>
-            </BlurFade>
-          </div>
-        </div>
+        <HomePage />
       </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="text-xl font-bold">About Me</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
@@ -104,6 +34,12 @@ export default function Page() {
 
               {DATA.summary.parts.outro}
             </p>
+          </div>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          {/* Terminal About Section */}
+          <div className="not-prose mt-6">
+            <Aboutpage />
           </div>
         </BlurFade>
       </section>
@@ -156,16 +92,32 @@ export default function Page() {
         </div>
       </section>
       <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+        <div className="flex min-h-0 flex-col gap-y-8">
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
+              <div className="space-y-4">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  My Expertise
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Skills & Technologies
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I&apos;ve mastered a diverse range of technologies and
+                  frameworks, from frontend development to backend systems. Here
+                  are the tools I use to bring ideas to life.
+                </p>
+              </div>
+            </div>
           </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
-              </BlurFade>
-            ))}
+          <div
+            className="mt-8 animate-in fade-in slide-in-from-bottom-6 duration-500 ease-out"
+            style={{
+              animationDelay: `${BLUR_FADE_DELAY * 9 * 1000}ms`,
+              animationFillMode: "both",
+            }}
+          >
+            <Marquee3D />
           </div>
         </div>
       </section>

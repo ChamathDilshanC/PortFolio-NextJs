@@ -13,10 +13,10 @@ export const DATA = {
   summary: {
     full: "I'm currently a Trainee Software Engineer at IJSE, where I'm honing my skills in full-stack development and building scalable web applications. Right now, I'm pursuing a BSc (Hons) in Computer Science while working on real-world projects that solve actual problems. I've built everything from expense tracking mobile apps to utility monitoring platforms for Sri Lanka, and I love the challenge of turning complex requirements into clean, user-friendly solutions.",
     parts: {
-      intro: "I'm currently a ",
-      role: "Trainee Software Engineer at IJSE",
+      intro: "I'm currently a   ",
+      role: "Trainee Software Engineer",
       middle:
-        ", where I'm honing my skills in full-stack development and building scalable web applications. Right now, I'm ",
+        "   at IJSE , where I'm honing my skills in full-stack development and building scalable web applications. Right now, I'm ",
       education: "pursuing a BSc (Hons) in Computer Science",
       outro:
         " while working on real-world projects that solve actual problems. I've built everything from expense tracking mobile apps to utility monitoring platforms for Sri Lanka, and I love the challenge of turning complex requirements into clean, user-friendly solutions.",

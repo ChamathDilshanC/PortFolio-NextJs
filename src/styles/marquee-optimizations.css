@@ -1,0 +1,74 @@
+/* Marquee Performance Optimizations */
+.marquee-container {
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+
+  /* CSS containment for better performance */
+  contain: layout style paint;
+
+  /* Optimize rendering */
+  will-change: transform;
+}
+
+.marquee-item {
+  /* Hardware acceleration for each marquee item */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  /* Smooth animation properties */
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+
+  /* Optimize for transforms */
+  will-change: transform;
+}
+
+.skill-card {
+  /* Optimize card rendering */
+  contain: layout style paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  /* Optimize for hover effects */
+  will-change: transform, opacity;
+}
+
+.skill-card img {
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
+  /* Force GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth fade animations */
+.fade-overlay {
+  will-change: opacity;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* Prevent animation crashes on tab visibility change */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-item {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    opacity: 0.8;
+  }
+}
+
+/* Optimize for low-power devices */
+@media (max-resolution: 150dpi) {
+  .marquee-container {
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  .skill-card {
+    transition-duration: 0.15s;
+  }
+}

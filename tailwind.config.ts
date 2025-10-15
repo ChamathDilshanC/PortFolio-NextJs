@@ -71,10 +71,33 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "marquee-vertical": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        skillsMarqueeFadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(24px)",
+            filter: "blur(6px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)",
+            filter: "blur(0px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "skills-marquee-fade-in": "skillsMarqueeFadeIn 0.5s ease-out forwards",
       },
     },
   },
