@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const skills = [
   {
