@@ -110,15 +110,17 @@ export default function Page() {
               </div>
             </div>
           </BlurFade>
-          <div
-            className="mt-8 animate-in fade-in slide-in-from-bottom-6 duration-500 ease-out"
-            style={{
-              animationDelay: `${BLUR_FADE_DELAY * 9 * 1000}ms`,
-              animationFillMode: "both",
-            }}
-          >
-            <Marquee3D />
-          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <div
+              className="mt-8 animate-in fade-in slide-in-from-bottom-6 duration-500 ease-out"
+              style={{
+                animationDelay: `${BLUR_FADE_DELAY * 9 * 1000}ms`,
+                animationFillMode: "both",
+              }}
+            >
+              <Marquee3D />
+            </div>
+          </BlurFade>
         </div>
       </section>
       <section id="projects">
