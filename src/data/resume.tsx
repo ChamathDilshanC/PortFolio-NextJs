@@ -671,4 +671,118 @@ export const DATA = {
       ],
     },
   ],
+  services: [
+    {
+      title: "Web Development",
+      description:
+        "Building modern, responsive web applications using cutting-edge technologies like React, Next.js, and TypeScript. From landing pages to complex enterprise solutions.",
+      category: "Full Stack",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/736x/f3/2a/34/f32a346dc58cb14055bd565282508f5f.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#projects",
+        },
+      ],
+    },
+    {
+      title: "Mobile App Development",
+      description:
+        "Creating native and cross-platform mobile applications for iOS and Android. Delivering seamless user experiences with React Native and modern mobile development practices.",
+      category: "Mobile",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/736x/66/1c/16/661c162104f63f5c71a279b105110c36.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#projects",
+        },
+      ],
+    },
+    {
+      title: "Cloud Solutions",
+      description:
+        "Architecting and deploying scalable cloud infrastructure on AWS, Azure, and Google Cloud. Expertise in serverless architecture, containerization, and DevOps practices.",
+      category: "Cloud & DevOps",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/736x/59/e5/ee/59e5ee410b5b6fa36c040ceeb6bc5b33.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#contact",
+        },
+      ],
+    },
+    {
+      title: "Frontend Development",
+      description:
+        "Crafting beautiful, performant user interfaces with attention to detail. Specializing in modern JavaScript frameworks, animations, and responsive design principles.",
+      category: "UI/UX",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/736x/ad/c3/a8/adc3a856f0ef3d0114fc11febc86f1ee.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#projects",
+        },
+      ],
+    },
+    {
+      title: "Backend Development",
+      description:
+        "Building robust APIs and server-side applications. Expertise in Node.js, Python, database design, authentication, and creating scalable backend systems.",
+      category: "Backend",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/736x/2a/f4/99/2af4995cb94faf131e91322086695d8d.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#projects",
+        },
+      ],
+    },
+    {
+      title: "Database Design",
+      description:
+        "Designing efficient database schemas and optimizing queries for performance. Experience with both SQL and NoSQL databases, data modeling, and migration strategies.",
+      category: "Data",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/1200x/3b/50/2e/3b502e3a6699183d2b06cc2b5d044c16.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#contact",
+        },
+      ],
+    },
+    {
+      title: "POS Development",
+      description:
+        "Creating comprehensive Point of Sale systems for retail and hospitality businesses. Building intuitive interfaces for inventory management, sales tracking, payment processing, and customer relationship management.",
+      category: "Business Solutions",
+      technologies: "",
+      image:
+        "https://i.pinimg.com/1200x/55/31/48/5531489e048a10761d21eec5e1cc03f6.jpg",
+      links: [
+        {
+          title: "Learn More",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/#projects",
+        },
+      ],
+    },
+  ],
 } as const;
