@@ -1,42 +1,15 @@
 "use client";
 
 import { ComponentPropsWithoutRef } from "react";
-
 import { cn } from "@/lib/utils";
 
 interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
-  /**
-   * Optional CSS class name to apply custom styles
-   */
   className?: string;
-  /**
-   * Whether to reverse the animation direction
-   * @default false
-   */
   reverse?: boolean;
-  /**
-   * Whether to pause the animation on hover
-   * @default false
-   */
   pauseOnHover?: boolean;
-  /**
-   * Content to be displayed in the marquee
-   */
   children: React.ReactNode;
-  /**
-   * Whether to animate vertically instead of horizontally
-   * @default false
-   */
   vertical?: boolean;
-  /**
-   * Number of times to repeat the content
-   * @default 4
-   */
   repeat?: number;
-  /**
-   * Duration of the animation in seconds
-   * @default 40
-   */
   duration?: number;
 }
 
@@ -63,35 +36,40 @@ export function Marquee({
       )}
       style={{
         gap: "1rem",
-        // Performance optimizations
         contain: "layout style paint",
         willChange: "transform",
         backfaceVisibility: "hidden",
-        transform: "translateZ(0)", // Force hardware acceleration
-        // @ts-ignore - CSS custom property
-        "--duration": `${duration}s`,
-        "--gap": "1rem",
-      } as React.CSSProperties}
+        transform: "translateZ(0)",
+      }}
     >
-      {Array(Math.max(1, Math.min(repeat, 6))) // Limit repeat to prevent performance issues
+      {Array(Math.max(1, Math.min(repeat, 6)))
         .fill(0)
         .map((_, i) => (
           <div
             key={i}
             className={cn("flex shrink-0 justify-around", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-              "[animation-direction:reverse]": reverse,
+              "flex-row": !vertical,
+              "flex-col": vertical,
             })}
             style={{
               gap: "1rem",
-              // Performance optimizations for each marquee item
               willChange: "transform",
               backfaceVisibility: "hidden",
-              // Smooth animation rendering
-              animationFillMode: "both",
-              animationTimingFunction: "linear",
+              animation: `${
+                vertical ? "marqueeVertical" : "marqueeHorizontal"
+              } ${duration}s linear infinite`,
+              animationDirection: reverse ? "reverse" : "normal",
+              animationPlayState: "running",
+            }}
+            onMouseEnter={(e) => {
+              if (pauseOnHover) {
+                e.currentTarget.style.animationPlayState = "paused";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (pauseOnHover) {
+                e.currentTarget.style.animationPlayState = "running";
+              }
             }}
           >
             {children}

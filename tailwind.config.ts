@@ -71,13 +71,14 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // FIXED: Added gap to the transform calculation
         marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
         },
         "marquee-vertical": {
-          "0%": { transform: "translateY(0%)" },
-          "100%": { transform: "translateY(-100%)" },
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
         },
         skillsMarqueeFadeIn: {
           "0%": {

@@ -317,3 +317,23 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
     }
   }
 }
+
+
+/* Marquee animations - CRITICAL for production */
+@keyframes marqueeHorizontal {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+@keyframes marqueeVertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - 1rem));
+  }
+}
