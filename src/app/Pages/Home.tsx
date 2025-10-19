@@ -70,7 +70,7 @@ export default function HomePage() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="inline-flex flex-wrap whitespace-pre-wrap text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-tight text-muted-foreground dark:text-white h-[4rem] sm:h-[4.5rem] lg:h-auto">
-              I'm Specialist On{"  "}
+              I&apos;m Specialist On{"  "}
               <TextLoop
                 className="overflow-y-clip"
                 transition={{

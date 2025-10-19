@@ -531,7 +531,7 @@ export default function ProjectPage() {
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
           <div className="text-center py-16">
             <p className="text-muted-foreground text-lg">
-              No showcase projects found. Add the "showcase" topic to your
+              No showcase projects found. Add the &quot;showcase&quot; topic to your
               repositories to display them here.
             </p>
           </div>
