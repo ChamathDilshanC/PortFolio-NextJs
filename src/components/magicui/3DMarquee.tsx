@@ -305,7 +305,8 @@ export function Marquee3D() {
         <Marquee
           pauseOnHover
           vertical
-          className="marquee-item [--duration:30s] hover:[--duration:45s] transition-all duration-300 ease-linear"
+          duration={30}
+          className="marquee-item transition-all duration-300 ease-linear"
           repeat={3}
         >
           {firstRow.map((skill) => (
@@ -315,7 +316,8 @@ export function Marquee3D() {
         <Marquee
           reverse
           pauseOnHover
-          className="marquee-item [--duration:28s] hover:[--duration:42s] transition-all duration-300 ease-linear"
+          duration={28}
+          className="marquee-item transition-all duration-300 ease-linear"
           vertical
           repeat={3}
         >
@@ -325,7 +327,8 @@ export function Marquee3D() {
         </Marquee>
         <Marquee
           pauseOnHover
-          className="marquee-item [--duration:32s] hover:[--duration:48s] transition-all duration-300 ease-linear"
+          duration={32}
+          className="marquee-item transition-all duration-300 ease-linear"
           vertical
           repeat={3}
         >
@@ -336,7 +339,8 @@ export function Marquee3D() {
         <Marquee
           reverse
           pauseOnHover
-          className="marquee-item [--duration:29s] hover:[--duration:44s] transition-all duration-300 ease-linear"
+          duration={29}
+          className="marquee-item transition-all duration-300 ease-linear"
           vertical
           repeat={3}
         >

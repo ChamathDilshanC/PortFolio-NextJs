@@ -33,6 +33,11 @@ interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
    * @default 4
    */
   repeat?: number;
+  /**
+   * Duration of the animation in seconds
+   * @default 40
+   */
+  duration?: number;
 }
 
 export function Marquee({
@@ -42,13 +47,14 @@ export function Marquee({
   children,
   vertical = false,
   repeat = 4,
+  duration = 40,
   ...props
 }: MarqueeProps) {
   return (
     <div
       {...props}
       className={cn(
-        "group flex [gap:var(--gap)] overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
+        "group flex overflow-hidden p-2",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
@@ -56,25 +62,30 @@ export function Marquee({
         className
       )}
       style={{
+        gap: "1rem",
         // Performance optimizations
         contain: "layout style paint",
         willChange: "transform",
         backfaceVisibility: "hidden",
         transform: "translateZ(0)", // Force hardware acceleration
-      }}
+        // @ts-ignore - CSS custom property
+        "--duration": `${duration}s`,
+        "--gap": "1rem",
+      } as React.CSSProperties}
     >
       {Array(Math.max(1, Math.min(repeat, 6))) // Limit repeat to prevent performance issues
         .fill(0)
         .map((_, i) => (
           <div
             key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
+            className={cn("flex shrink-0 justify-around", {
               "animate-marquee flex-row": !vertical,
               "animate-marquee-vertical flex-col": vertical,
               "group-hover:[animation-play-state:paused]": pauseOnHover,
               "[animation-direction:reverse]": reverse,
             })}
             style={{
+              gap: "1rem",
               // Performance optimizations for each marquee item
               willChange: "transform",
               backfaceVisibility: "hidden",
