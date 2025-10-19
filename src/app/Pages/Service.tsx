@@ -1,10 +1,11 @@
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { DATA } from "@/data/resume";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function Service() {
+export default function ServicePage() {
   return (
     <section id="services">
       <div className="space-y-12 w-full py-12">
@@ -33,14 +34,22 @@ export default function Service() {
                 key={service.title}
                 delay={BLUR_FADE_DELAY * 15 + id * 0.05}
               >
-                <HackathonCard
-                  title={service.title}
-                  description={service.description}
-                  location={service.category}
-                  dates={service.technologies}
-                  image={service.image}
-                  links={service.links}
-                />
+                <FollowerPointerCard
+                  title={
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold">{service.title}</span>
+                    </div>
+                  }
+                >
+                  <HackathonCard
+                    title={service.title}
+                    description={service.description}
+                    location={service.category}
+                    dates={service.technologies}
+                    image={service.image}
+                    links={service.links}
+                  />
+                </FollowerPointerCard>
               </BlurFade>
             ))}
           </ul>

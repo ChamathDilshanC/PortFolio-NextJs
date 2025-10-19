@@ -11,6 +11,7 @@ import {
   CardTitle,
   Card as ShadCard,
 } from "@/components/ui/card";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { Marquee } from "@/components/ui/marquee";
 import {
   fetchGitHubRepos,
@@ -397,113 +398,125 @@ export default function ProjectPage() {
                     className="shrink-0 w-[320px] sm:w-[420px]"
                   >
                     <BlurFade delay={BLUR_FADE_DELAY * (idx + 6)}>
-                      <ShadCard className="group h-full overflow-hidden border-2 transition-[transform,box-shadow] duration-200 hover:shadow-xl hover:-translate-y-1">
-                        <CardHeader className="pb-4 pt-5 px-5">
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1 min-w-0">
-                              <CardTitle className="text-xl font-bold mb-2 line-clamp-2 break-words">
-                                {repo.name
-                                  .replace(/-/g, " ")
-                                  .replace(/_/g, " ")}
-                              </CardTitle>
-                              <CardDescription className="line-clamp-2 text-sm break-words">
-                                {repo.description || "No description available"}
-                              </CardDescription>
-                            </div>
-                            <div
-                              className={`${color} rounded-lg p-2.5 shadow-lg shrink-0`}
-                            >
-                              <Icon className="h-5 w-5 text-white" />
-                            </div>
+                      <FollowerPointerCard
+                        title={
+                          <div className="flex items-center gap-2">
+                            <Icon className="h-3.5 w-3.5" />
+                            <span className="font-semibold">
+                              {repo.name.replace(/-/g, " ").replace(/_/g, " ")}
+                            </span>
                           </div>
-                        </CardHeader>
-
-                        <CardContent className="pb-4 px-5">
-                          <div className="flex flex-wrap gap-2">
-                            {repo.language && (
-                              <Badge
-                                variant="secondary"
-                                className={`${
-                                  LANGUAGE_COLORS[repo.language] ||
-                                  "bg-gray-500"
-                                } text-white hover:${
-                                  LANGUAGE_COLORS[repo.language] ||
-                                  "bg-gray-500"
-                                }`}
+                        }
+                      >
+                        <ShadCard className="group h-full overflow-hidden border-2 transition-[transform,box-shadow] duration-200 hover:shadow-xl hover:-translate-y-1">
+                          <CardHeader className="pb-4 pt-5 px-5">
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex-1 min-w-0">
+                                <CardTitle className="text-xl font-bold mb-2 line-clamp-2 break-words">
+                                  {repo.name
+                                    .replace(/-/g, " ")
+                                    .replace(/_/g, " ")}
+                                </CardTitle>
+                                <CardDescription className="line-clamp-2 text-sm break-words">
+                                  {repo.description ||
+                                    "No description available"}
+                                </CardDescription>
+                              </div>
+                              <div
+                                className={`${color} rounded-lg p-2.5 shadow-lg shrink-0`}
                               >
-                                <Code2 className="h-3 w-3 mr-1" />
-                                {repo.language}
-                              </Badge>
-                            )}
-                            <Badge variant="secondary" className={textColor}>
-                              <Icon className="h-3 w-3 mr-1" />
-                              {
-                                PROJECT_CATEGORIES[
-                                  category as keyof typeof PROJECT_CATEGORIES
-                                ]?.label
-                              }
-                            </Badge>
-                          </div>
-                        </CardContent>
-
-                        <CardFooter className="border-t pt-4 pb-4 px-5">
-                          <div className="w-full text-sm text-muted-foreground flex flex-col gap-3">
-                            <div className="flex items-center gap-4">
-                              <div className="flex items-center gap-1.5">
-                                <Star className="h-4 w-4" />
-                                <span className="font-medium">
-                                  {repo.stargazers_count}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <GitFork className="h-4 w-4" />
-                                <span className="font-medium">
-                                  {repo.forks_count}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1.5 ml-auto">
-                                <Clock className="h-4 w-4" />
-                                <span className="text-xs">
-                                  {formatLastUpdated(repo.updated_at)}
-                                </span>
+                                <Icon className="h-5 w-5 text-white" />
                               </div>
                             </div>
-                            <div className="flex items-center gap-2 justify-end">
-                              {getLiveSiteUrl(repo) && (
+                          </CardHeader>
+
+                          <CardContent className="pb-4 px-5">
+                            <div className="flex flex-wrap gap-2">
+                              {repo.language && (
+                                <Badge
+                                  variant="secondary"
+                                  className={`${
+                                    LANGUAGE_COLORS[repo.language] ||
+                                    "bg-gray-500"
+                                  } text-white hover:${
+                                    LANGUAGE_COLORS[repo.language] ||
+                                    "bg-gray-500"
+                                  }`}
+                                >
+                                  <Code2 className="h-3 w-3 mr-1" />
+                                  {repo.language}
+                                </Badge>
+                              )}
+                              <Badge variant="secondary" className={textColor}>
+                                <Icon className="h-3 w-3 mr-1" />
+                                {
+                                  PROJECT_CATEGORIES[
+                                    category as keyof typeof PROJECT_CATEGORIES
+                                  ]?.label
+                                }
+                              </Badge>
+                            </div>
+                          </CardContent>
+
+                          <CardFooter className="border-t pt-4 pb-4 px-5">
+                            <div className="w-full text-sm text-muted-foreground flex flex-col gap-3">
+                              <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-1.5">
+                                  <Star className="h-4 w-4" />
+                                  <span className="font-medium">
+                                    {repo.stargazers_count}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                  <GitFork className="h-4 w-4" />
+                                  <span className="font-medium">
+                                    {repo.forks_count}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-1.5 ml-auto">
+                                  <Clock className="h-4 w-4" />
+                                  <span className="text-xs">
+                                    {formatLastUpdated(repo.updated_at)}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 justify-end">
+                                {getLiveSiteUrl(repo) && (
+                                  <Link
+                                    href={getLiveSiteUrl(repo)!}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <Button
+                                      size="sm"
+                                      variant="default"
+                                      className="h-8 px-3"
+                                    >
+                                      Live site
+                                    </Button>
+                                  </Link>
+                                )}
                                 <Link
-                                  href={getLiveSiteUrl(repo)!}
+                                  href={repo.html_url}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
                                   <Button
                                     size="sm"
-                                    variant="default"
+                                    variant="outline"
                                     className="h-8 px-3"
                                   >
-                                    Live site
+                                    <span className="flex items-center gap-1">
+                                      View repo
+                                      <ExternalLink className="h-3.5 w-3.5" />
+                                    </span>
                                   </Button>
                                 </Link>
-                              )}
-                              <Link
-                                href={repo.html_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="h-8 px-3"
-                                >
-                                  <span className="flex items-center gap-1">
-                                    View repo
-                                    <ExternalLink className="h-3.5 w-3.5" />
-                                  </span>
-                                </Button>
-                              </Link>
+                              </div>
                             </div>
-                          </div>
-                        </CardFooter>
-                      </ShadCard>
+                          </CardFooter>
+                        </ShadCard>
+                      </FollowerPointerCard>
                     </BlurFade>
                   </div>
                 );
@@ -576,105 +589,120 @@ export default function ProjectPage() {
                         key={repo.id}
                         delay={BLUR_FADE_DELAY * (index + 7)}
                       >
-                        <ShadCard className="h-full flex flex-col hover:shadow-xl transition-shadow duration-300 group border hover:border-primary/50 bg-card">
-                          <CardHeader className="pb-4 space-y-3 pt-5 px-5">
-                            <div className="flex items-start justify-between gap-3">
-                              <Link
-                                href={repo.html_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 min-w-0"
-                              >
-                                <CardTitle className="text-base sm:text-lg font-semibold group-hover:text-primary transition-colors duration-200 line-clamp-2 flex items-start gap-2 break-words">
-                                  <span className="break-words">
-                                    {repo.name}
-                                  </span>
-                                  <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0 mt-0.5" />
-                                </CardTitle>
-                              </Link>
+                        <FollowerPointerCard
+                          title={
+                            <div className="flex items-center gap-2">
                               {categoryInfo && (
-                                <div
-                                  className={`${categoryInfo.color} p-2 rounded-lg shadow-sm flex-shrink-0 transition-none`}
-                                  title={categoryInfo.label}
+                                <categoryInfo.icon className="h-3.5 w-3.5" />
+                              )}
+                              <span className="font-semibold">
+                                {repo.name
+                                  .replace(/-/g, " ")
+                                  .replace(/_/g, " ")}
+                              </span>
+                            </div>
+                          }
+                        >
+                          <ShadCard className="h-full flex flex-col hover:shadow-xl transition-shadow duration-300 group border hover:border-primary/50 bg-card">
+                            <CardHeader className="pb-4 space-y-3 pt-5 px-5">
+                              <div className="flex items-start justify-between gap-3">
+                                <Link
+                                  href={repo.html_url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex-1 min-w-0"
                                 >
-                                  <categoryInfo.icon className="h-4 w-4 text-white" />
+                                  <CardTitle className="text-base sm:text-lg font-semibold group-hover:text-primary transition-colors duration-200 line-clamp-2 flex items-start gap-2 break-words">
+                                    <span className="break-words">
+                                      {repo.name}
+                                    </span>
+                                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0 mt-0.5" />
+                                  </CardTitle>
+                                </Link>
+                                {categoryInfo && (
+                                  <div
+                                    className={`${categoryInfo.color} p-2 rounded-lg shadow-sm flex-shrink-0 transition-none`}
+                                    title={categoryInfo.label}
+                                  >
+                                    <categoryInfo.icon className="h-4 w-4 text-white" />
+                                  </div>
+                                )}
+                              </div>
+                              <CardDescription className="line-clamp-2 text-sm leading-relaxed min-h-[2.5rem] break-words">
+                                {repo.description || "No description available"}
+                              </CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="flex-1 pb-4 px-5">
+                              {/* Language Badge */}
+                              {repo.language && (
+                                <div
+                                  className={`${categoryInfo.lightColor} inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${categoryInfo.textColor} transition-none`}
+                                >
+                                  <span
+                                    className={`w-2 h-2 rounded-full ${languageColor} transition-none`}
+                                  />
+                                  {repo.language}
                                 </div>
                               )}
-                            </div>
-                            <CardDescription className="line-clamp-2 text-sm leading-relaxed min-h-[2.5rem] break-words">
-                              {repo.description || "No description available"}
-                            </CardDescription>
-                          </CardHeader>
+                            </CardContent>
 
-                          <CardContent className="flex-1 pb-4 px-5">
-                            {/* Language Badge */}
-                            {repo.language && (
-                              <div
-                                className={`${categoryInfo.lightColor} inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${categoryInfo.textColor} transition-none`}
-                              >
-                                <span
-                                  className={`w-2 h-2 rounded-full ${languageColor} transition-none`}
-                                />
-                                {repo.language}
-                              </div>
-                            )}
-                          </CardContent>
-
-                          <CardFooter className="text-xs text-muted-foreground pt-4 pb-4 px-5 border-t">
-                            <div className="w-full flex flex-col gap-3">
-                              <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150">
-                                  <Star className="h-3.5 w-3.5" />
-                                  <span className="font-medium">
-                                    {repo.stargazers_count}
-                                  </span>
+                            <CardFooter className="text-xs text-muted-foreground pt-4 pb-4 px-5 border-t">
+                              <div className="w-full flex flex-col gap-3">
+                                <div className="flex items-center gap-4">
+                                  <div className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150">
+                                    <Star className="h-3.5 w-3.5" />
+                                    <span className="font-medium">
+                                      {repo.stargazers_count}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150">
+                                    <GitFork className="h-3.5 w-3.5" />
+                                    <span className="font-medium">
+                                      {repo.forks_count}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-1.5 ml-auto">
+                                    <Clock className="h-3.5 w-3.5" />
+                                    <span className="text-xs">
+                                      {formatLastUpdated(repo.updated_at)}
+                                    </span>
+                                  </div>
                                 </div>
-                                <div className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150">
-                                  <GitFork className="h-3.5 w-3.5" />
-                                  <span className="font-medium">
-                                    {repo.forks_count}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-1.5 ml-auto">
-                                  <Clock className="h-3.5 w-3.5" />
-                                  <span className="text-xs">
-                                    {formatLastUpdated(repo.updated_at)}
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2 justify-end">
-                                {getLiveSiteUrl(repo) && (
+                                <div className="flex items-center gap-2 justify-end">
+                                  {getLiveSiteUrl(repo) && (
+                                    <Link
+                                      href={getLiveSiteUrl(repo)!}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <Button
+                                        size="sm"
+                                        variant="default"
+                                        className="h-7 px-2.5"
+                                      >
+                                        Live site
+                                      </Button>
+                                    </Link>
+                                  )}
                                   <Link
-                                    href={getLiveSiteUrl(repo)!}
+                                    href={repo.html_url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
                                     <Button
                                       size="sm"
-                                      variant="default"
+                                      variant="outline"
                                       className="h-7 px-2.5"
                                     >
-                                      Live site
+                                      Repo
                                     </Button>
                                   </Link>
-                                )}
-                                <Link
-                                  href={repo.html_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-7 px-2.5"
-                                  >
-                                    Repo
-                                  </Button>
-                                </Link>
+                                </div>
                               </div>
-                            </div>
-                          </CardFooter>
-                        </ShadCard>
+                            </CardFooter>
+                          </ShadCard>
+                        </FollowerPointerCard>
                       </BlurFade>
                     );
                   })}

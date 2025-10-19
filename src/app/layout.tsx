@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ToastProvider } from "@/components/ui/toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -148,6 +149,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload Spline 3D scene immediately */}
+        <link
+          rel="preload"
+          href="https://prod.spline.design/00E9pW80VTSL0try/scene.splinecode"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
+          as="script"
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased py-12 sm:py-24 px-6",
@@ -160,10 +175,12 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="portfolio-theme"
         >
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
+          <ToastProvider>
+            <TooltipProvider delayDuration={0}>
+              {children}
+              <Navbar />
+            </TooltipProvider>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>

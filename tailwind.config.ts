@@ -114,6 +114,14 @@ const config = {
             transform: "translateZ(0) rotate(360deg)",
           },
         },
+        float: {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-20px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -122,8 +130,11 @@ const config = {
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         "skills-marquee-fade-in": "skillsMarqueeFadeIn 0.5s ease-out forwards",
         shine: "shine var(--duration, 3s) linear infinite",
-        "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
+        "shimmer-slide":
+          "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around var(--speed) infinite linear",
+        float: "float 3s ease-in-out infinite",
+        "spin-slow": "spin 8s linear infinite",
       },
     },
   },

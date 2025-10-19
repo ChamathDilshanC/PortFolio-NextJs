@@ -9,6 +9,7 @@ import { AuroraText } from "@/components/ui/aurora-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { Badge } from "@/components/ui/badge";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { DATA } from "@/data/resume";
 import { Download, Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -49,13 +50,23 @@ export default function HomePage() {
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
         <div className="flex-col flex flex-1 space-y-3 md:space-y-4">
           <BlurFade delay={BLUR_FADE_DELAY}>
-            <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-foreground dark:text-white">
-              <span>Hi,&nbsp;</span>
-              <AuroraText className="inline">
-                {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
-              </AuroraText>
-              <span> 👋&nbsp;</span>
-            </div>
+            <FollowerPointerCard
+              title={
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">
+                    Passionate Software Engineer
+                  </span>
+                </div>
+              }
+            >
+              <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-foreground dark:text-white">
+                <span>Hi,&nbsp;</span>
+                <AuroraText className="inline">
+                  {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
+                </AuroraText>
+                <span> 👋&nbsp;</span>
+              </div>
+            </FollowerPointerCard>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="inline-flex flex-wrap whitespace-pre-wrap text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-tight text-muted-foreground dark:text-white h-[4rem] sm:h-[4.5rem] lg:h-auto">
@@ -181,10 +192,18 @@ export default function HomePage() {
 
         <BlurFade delay={BLUR_FADE_DELAY}>
           <div className="flex justify-center md:justify-end">
-            <Avatar className="size-20 md:size-24 lg:size-28">
-              <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-              <AvatarFallback>{DATA.initials}</AvatarFallback>
-            </Avatar>
+            <FollowerPointerCard
+              title={
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">{DATA.name}</span>
+                </div>
+              }
+            >
+              <Avatar className="size-20 md:size-24 lg:size-28">
+                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                <AvatarFallback>{DATA.initials}</AvatarFallback>
+              </Avatar>
+            </FollowerPointerCard>
           </div>
         </BlurFade>
       </div>
