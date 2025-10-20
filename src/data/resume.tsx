@@ -134,7 +134,7 @@ export const DATA = {
       school: "Oxbridge College - Thilina Peiris",
       href: "https://www.facebook.com/oxbridgecollegeteam",
       degree: "English Diploma in Spoken English",
-      logoUrl: "/Education/oxbridge.jpg",
+      logoUrl: "/Education/Oxbridge.jpg",
       start: "Mar 2023",
       end: "Mar 2024",
     },
