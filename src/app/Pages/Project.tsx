@@ -27,6 +27,7 @@ import {
   GraduationCap,
   Lightbulb,
   Star,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -173,6 +174,8 @@ export default function ProjectPage() {
   const [languageFilter, setLanguageFilter] = useState<"all" | string>("all");
   const [categoryFilter, setCategoryFilter] = useState<"all" | string>("all");
   const [viewMode, setViewMode] = useState<"expandable" | "grid">("expandable");
+  const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadRepos() {
@@ -183,6 +186,18 @@ export default function ProjectPage() {
     }
     loadRepos();
   }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   const languages = Array.from(
     new Set(repos.map((repo) => repo.language).filter(Boolean))
@@ -373,7 +388,7 @@ export default function ProjectPage() {
       {/* Showcase Cards View - Only repos with "showcase" topic */}
       {!loading && viewMode === "expandable" && showcaseCards.length > 0 && (
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <div className="relative">
+          <div className="relative overflow-hidden">
             {/* Left/Right fade edges for marquee */}
             <div className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-14 z-10 bg-gradient-to-r from-background to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-14 z-10 bg-gradient-to-l from-background to-transparent" />
@@ -395,7 +410,11 @@ export default function ProjectPage() {
                 return (
                   <div
                     key={repo.id}
-                    className="shrink-0 w-[320px] sm:w-[420px]"
+                    className="shrink-0 w-[320px] sm:w-[420px] cursor-pointer"
+                    onClick={() => {
+                      setSelectedRepo(repo);
+                      setIsModalOpen(true);
+                    }}
                   >
                     <BlurFade delay={BLUR_FADE_DELAY * (idx + 6)}>
                       <FollowerPointerCard
@@ -589,7 +608,14 @@ export default function ProjectPage() {
                         key={repo.id}
                         delay={BLUR_FADE_DELAY * (index + 7)}
                       >
-                        <FollowerPointerCard
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => {
+                            setSelectedRepo(repo);
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          <FollowerPointerCard
                           title={
                             <div className="flex items-center gap-2">
                               {categoryInfo && (
@@ -703,6 +729,7 @@ export default function ProjectPage() {
                             </CardFooter>
                           </ShadCard>
                         </FollowerPointerCard>
+                        </div>
                       </BlurFade>
                     );
                   })}
@@ -730,6 +757,90 @@ export default function ProjectPage() {
             </div>
           </ShadCard>
         </BlurFade>
+      )}
+
+      {/* --- MODAL POPUP --- */}
+      {isModalOpen && selectedRepo && (
+        <div
+          className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="relative bg-card max-w-lg w-full rounded-2xl border border-border shadow-2xl animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors z-10"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Modal Header */}
+              <div className="p-6 border-b border-border/30">
+                <h2 className="text-2xl font-bold mb-2 pr-8">
+                  {selectedRepo.name.replace(/[-_]/g, " ")}
+                </h2>
+                <p className="text-muted-foreground text-sm">
+                  {selectedRepo.description || "No description available."}
+                </p>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 space-y-4">
+                {selectedRepo.language && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span
+                      className={`w-3 h-3 rounded-full ${
+                        LANGUAGE_COLORS[selectedRepo.language] || "bg-gray-500"
+                      }`}
+                    ></span>
+                    <span className="font-medium">{selectedRepo.language}</span>
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Star className="h-4 w-4" /> {selectedRepo.stargazers_count} Stars
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <GitFork className="h-4 w-4" /> {selectedRepo.forks_count} Forks
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="h-4 w-4" />
+                    Updated {formatLastUpdated(selectedRepo.updated_at)}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-2 pt-4">
+                  {getLiveSiteUrl(selectedRepo) && (
+                    <Link
+                      href={getLiveSiteUrl(selectedRepo)!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Button size="sm" className="px-3">
+                        Live Site
+                      </Button>
+                    </Link>
+                  )}
+                  <Link
+                    href={selectedRepo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Button variant="outline" size="sm" className="px-3">
+                      GitHub Repo <ExternalLink className="ml-1 h-3.5 w-3.5" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
       )}
     </div>
   );

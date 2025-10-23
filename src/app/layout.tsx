@@ -149,20 +149,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Preload Spline 3D scene immediately */}
-        <link
-          rel="preload"
-          href="https://prod.spline.design/00E9pW80VTSL0try/scene.splinecode"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="https://unpkg.com/@splinetool/viewer@1.10.82/build/spline-viewer.js"
-          as="script"
-        />
-      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased py-12 sm:py-24 px-6",

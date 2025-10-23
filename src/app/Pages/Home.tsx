@@ -11,7 +11,7 @@ import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { Badge } from "@/components/ui/badge";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { DATA } from "@/data/resume";
-import { Download, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -115,30 +115,13 @@ export default function HomePage() {
           />
           <div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="pt-2 md:pt-3 flex items-center justify-between">
+              <div className="pt-2 md:pt-3 flex items-center justify-start">
                 <Badge
                   variant="secondary"
                   className="rounded-full bg-muted/50 px-2.5 py-1 text-[10px] md:text-xs uppercase tracking-wider text-foreground/70 backdrop-blur"
                 >
                   Inspiration
                 </Badge>
-                <button
-                  onClick={handleDownload}
-                  disabled={isDownloading}
-                  className="group relative px-3 py-1.5 text-xs md:text-sm rounded-full border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-all disabled:opacity-50 overflow-hidden"
-                >
-                  {/* Simple shimmer overlay */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-                  {isDownloading ? (
-                    <Loader2 className="h-3.5 w-3.5 animate-spin text-primary relative z-10" />
-                  ) : (
-                    <span className="flex items-center gap-1.5 text-foreground font-medium whitespace-nowrap relative z-10">
-                      <Download className="h-3.5 w-3.5" />
-                      Get Resume
-                    </span>
-                  )}
-                </button>
               </div>
               <div className="mt-3">
                 <AvatarCircles
@@ -191,7 +174,7 @@ export default function HomePage() {
         </div>
 
         <BlurFade delay={BLUR_FADE_DELAY}>
-          <div className="flex justify-center md:justify-end">
+          <div className="flex flex-col items-center md:items-end gap-3">
             <FollowerPointerCard
               title={
                 <div className="flex items-center gap-2">
@@ -204,6 +187,46 @@ export default function HomePage() {
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
             </FollowerPointerCard>
+            <button
+              onClick={handleDownload}
+              disabled={isDownloading}
+              className={`group relative flex items-center gap-2 rounded-full border border-[#3B3BF6] bg-[#1E1E1E] px-3 sm:px-4 py-1 text-xs sm:text-sm text-gray-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#3B3BF6]/50 ${
+                isDownloading
+                  ? "opacity-70 cursor-not-allowed"
+                  : "hover:shadow-[0_0_10px_#3B3BF6]"
+              }`}
+            >
+              {/* Content while downloading */}
+              {isDownloading ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin text-[#3B3BF6]" />
+                  <span>Downloading...</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-300 group-hover:text-gray-100 transition-colors duration-300">
+                    Get Resume
+                  </span>
+                  <div
+                    className={`flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full transition-all duration-300 ${
+                      isDownloading
+                        ? "bg-gray-600"
+                        : "bg-[#3B3BF6] group-hover:bg-[#5050ff] group-hover:translate-x-0.5"
+                    }`}
+                  >
+                    {/* Telegram icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      className="h-3 w-3 sm:h-3.5 sm:w-3.5"
+                    >
+                      <path d="M9.036 15.58l-.396 5.594c.566 0 .81-.244 1.102-.537l2.64-2.529 5.475 4.012c1.004.553 1.716.262 1.978-.929l3.584-16.8.002-.002c.32-1.495-.54-2.086-1.514-1.721L1.16 9.51c-1.447.553-1.426 1.345-.261 1.706l5.96 1.862 13.833-8.721L9.036 15.58z" />
+                    </svg>
+                  </div>
+                </>
+              )}
+            </button>
           </div>
         </BlurFade>
       </div>

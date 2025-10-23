@@ -292,20 +292,71 @@ export default function ContactForm() {
             )}
           </div>
           <div className="flex justify-center">
-            <Button
+            <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full md:w-1/3 px-8 py-2 text-sm font-medium"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                "Submit"
+              disabled={
+                isSubmitting ||
+                !formData.name.trim() ||
+                !formData.email.trim() ||
+                !formData.message.trim()
+              }
+              className={cn(
+                "group relative w-full md:w-1/2 flex items-center justify-between rounded-full border border-[#3B3BF6] bg-[#1E1E1E] px-4 py-3 text-sm text-gray-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#3B3BF6]/50",
+                (isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.message.trim()) &&
+                  "opacity-60 cursor-not-allowed",
+                !(
+                  isSubmitting ||
+                  !formData.name.trim() ||
+                  !formData.email.trim() ||
+                  !formData.message.trim()
+                ) && "hover:shadow-[0_0_10px_#3B3BF6]"
               )}
-            </Button>
+            >
+              {/* Left text or loader */}
+              {isSubmitting ? (
+                <div className="flex items-center gap-2 mx-auto">
+                  <Loader2 className="h-4 w-4 animate-spin text-[#3B3BF6]" />
+                  <span>Sending...</span>
+                </div>
+              ) : (
+                <span
+                  className={cn(
+                    "pl-2 transition-colors duration-300",
+                    formData.name.trim() &&
+                      formData.email.trim() &&
+                      formData.message.trim()
+                      ? "text-gray-200"
+                      : "text-gray-500"
+                  )}
+                >
+                  Send Message
+                </span>
+              )}
+
+              {/* Telegram Icon Bubble */}
+              <div
+                className={cn(
+                  "absolute right-2 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300",
+                  formData.name.trim() &&
+                    formData.email.trim() &&
+                    formData.message.trim()
+                    ? "bg-[#3B3BF6] group-hover:bg-[#5050ff] group-hover:translate-x-1"
+                    : "bg-gray-600"
+                )}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  className="h-4 w-4"
+                >
+                  <path d="M9.036 15.58l-.396 5.594c.566 0 .81-.244 1.102-.537l2.64-2.529 5.475 4.012c1.004.553 1.716.262 1.978-.929l3.584-16.8.002-.002c.32-1.495-.54-2.086-1.514-1.721L1.16 9.51c-1.447.553-1.426 1.345-.261 1.706l5.96 1.862 13.833-8.721L9.036 15.58z" />
+                </svg>
+              </div>
+            </button>
           </div>
         </form>
       </div>

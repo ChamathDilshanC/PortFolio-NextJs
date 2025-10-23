@@ -92,7 +92,7 @@ export function Aboutpage() {
           <TypingAnimation delay={9000}>&gt; echo $PASSION</TypingAnimation>
 
           <AnimatedSpan delay={9800} className="text-purple-400">
-            &quot; • Clean Code • Innovation • Problem Solving &quot;
+            " • Clean Code • Innovation • Problem Solving "
           </AnimatedSpan>
 
           <TypingAnimation delay={10600}>&gt; ./connect.sh</TypingAnimation>
