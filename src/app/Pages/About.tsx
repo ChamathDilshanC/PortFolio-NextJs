@@ -91,8 +91,9 @@ export function Aboutpage() {
 
           <TypingAnimation delay={9000}>&gt; echo $PASSION</TypingAnimation>
 
+          {/* ✅ Escaped quotes below to fix build error */}
           <AnimatedSpan delay={9800} className="text-purple-400">
-            " • Clean Code • Innovation • Problem Solving "
+            &quot; • Clean Code • Innovation • Problem Solving &quot;
           </AnimatedSpan>
 
           <TypingAnimation delay={10600}>&gt; ./connect.sh</TypingAnimation>
