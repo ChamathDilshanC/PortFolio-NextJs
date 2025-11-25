@@ -1,7 +1,7 @@
-import { HackathonCard } from "@/components/hackathon-card";
-import BlurFade from "@/components/magicui/blur-fade";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
-import { DATA } from "@/data/resume";
+import { HackathonCard } from '@/components/hackathon-card';
+import BlurFade from '@/components/magicui/blur-fade';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
+import { DATA } from '@/data/resume';
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -28,31 +28,35 @@ export default function ServicePage() {
           </div>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 14}>
-          <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-y-16 gap-x-10 md:grid-cols-2 md:gap-y-16 md:gap-x-12 xl:grid-cols-3">
             {DATA.services.map((service, id) => (
-              <BlurFade
-                key={service.title}
-                delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-              >
-                <FollowerPointerCard
-                  title={
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold">{service.title}</span>
-                    </div>
-                  }
+              <div key={service.title} className="h-full mb-3">
+                <BlurFade
+                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                  className="h-full"
                 >
-                  <HackathonCard
-                    title={service.title}
-                    description={service.description}
-                    location={service.category}
-                    dates={service.technologies}
-                    image={service.image}
-                    links={service.links}
-                  />
-                </FollowerPointerCard>
-              </BlurFade>
+                  <FollowerPointerCard
+                    title={
+                      <div className="flex items-center gap-2 text-base font-semibold">
+                        <span className="inline-flex size-2 rounded-full bg-primary" />
+                        {service.title}
+                      </div>
+                    }
+                    className="h-full"
+                  >
+                    <HackathonCard
+                      title={service.title}
+                      description={service.description}
+                      location={service.category}
+                      dates={service.technologies}
+                      image={service.image}
+                      links={service.links}
+                    />
+                  </FollowerPointerCard>
+                </BlurFade>
+              </div>
             ))}
-          </ul>
+          </div>
         </BlurFade>
       </div>
     </section>
