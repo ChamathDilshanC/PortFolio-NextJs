@@ -1,5 +1,4 @@
 import Navbar from '@/components/navbar';
-import ParticlesBackground from '@/components/particles-background';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ToastProvider } from '@/components/ui/toast';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -162,7 +161,6 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="portfolio-theme"
         >
-          <ParticlesBackground />
           <ToastProvider>
             <TooltipProvider delayDuration={0}>
               {children}
