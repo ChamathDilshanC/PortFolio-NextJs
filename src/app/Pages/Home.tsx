@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { TextLoop } from "@/components/core/text-loop";
-import BlurFade from "@/components/magicui/blur-fade";
+import { TextLoop } from '@/components/core/text-loop';
+import BlurFade from '@/components/magicui/blur-fade';
 
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import ShinyText from "@/components/ShinyText";
-import { AuroraText } from "@/components/ui/aurora-text";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AvatarCircles } from "@/components/ui/avatar-circles";
-import { Badge } from "@/components/ui/badge";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
-import { DATA } from "@/data/resume";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import BlurFadeText from '@/components/magicui/blur-fade-text';
+import ShinyText from '@/components/ShinyText';
+import { AuroraText } from '@/components/ui/aurora-text';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { AvatarCircles } from '@/components/ui/avatar-circles';
+import { Badge } from '@/components/ui/badge';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
+import { DATA } from '@/data/resume';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -24,19 +24,19 @@ export default function HomePage() {
     try {
       // Fetch the PDF from public folder
       const response = await fetch(
-        "/CHAMATH_DILSHAN_-_TRAINEE_SOFTWARE_ENGINEER.pdf"
+        '/CHAMATH_DILSHAN_-_TRAINEE_SOFTWARE_ENGINEER.pdf'
       );
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = url;
-      link.download = "Chamath_Dilshan_-_Trainee_Software_Engineer.pdf";
+      link.download = 'Chamath_Dilshan_-_Trainee_Software_Engineer.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Download failed:", error);
+      console.error('Download failed:', error);
     } finally {
       // Keep loader visible for a moment
       setTimeout(() => {
@@ -62,7 +62,7 @@ export default function HomePage() {
               <div className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-foreground dark:text-white">
                 <span>Hi,&nbsp;</span>
                 <AuroraText className="inline">
-                  {`I'm ${DATA.name.split(" ").slice(0, 1)}`}
+                  {`I'm ${DATA.name.split(' ').slice(0, 1)}`}
                 </AuroraText>
                 <span> 👋&nbsp;</span>
               </div>
@@ -70,11 +70,11 @@ export default function HomePage() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="inline-flex flex-wrap whitespace-pre-wrap text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium tracking-tight text-muted-foreground dark:text-white h-[4rem] sm:h-[4.5rem] lg:h-auto">
-              I&apos;m Specialist On{"  "}
+              I&apos;m Specialist On{'  '}
               <TextLoop
                 className="overflow-y-clip"
                 transition={{
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 900,
                   damping: 80,
                   mass: 10,
@@ -84,19 +84,19 @@ export default function HomePage() {
                     y: 20,
                     rotateX: 90,
                     opacity: 0,
-                    filter: "blur(4px)",
+                    filter: 'blur(4px)',
                   },
                   animate: {
                     y: 0,
                     rotateX: 0,
                     opacity: 1,
-                    filter: "blur(0px)",
+                    filter: 'blur(0px)',
                   },
                   exit: {
                     y: -20,
                     rotateX: -90,
                     opacity: 0,
-                    filter: "blur(4px)",
+                    filter: 'blur(4px)',
                   },
                 }}
               >
@@ -128,32 +128,32 @@ export default function HomePage() {
                   numPeople={12}
                   avatarUrls={[
                     {
-                      imageUrl: "https://github.com/gaearon.png",
-                      profileUrl: "https://github.com/gaearon",
+                      imageUrl: 'https://github.com/gaearon.png',
+                      profileUrl: 'https://github.com/gaearon',
                     },
                     {
-                      imageUrl: "https://github.com/yyx990803.png",
-                      profileUrl: "https://github.com/yyx990803",
+                      imageUrl: 'https://github.com/yyx990803.png',
+                      profileUrl: 'https://github.com/yyx990803',
                     },
                     {
-                      imageUrl: "https://github.com/sindresorhus.png",
-                      profileUrl: "https://github.com/sindresorhus",
+                      imageUrl: 'https://github.com/sindresorhus.png',
+                      profileUrl: 'https://github.com/sindresorhus',
                     },
                     {
-                      imageUrl: "https://github.com/rauchg.png",
-                      profileUrl: "https://github.com/rauchg",
+                      imageUrl: 'https://github.com/rauchg.png',
+                      profileUrl: 'https://github.com/rauchg',
                     },
                     {
-                      imageUrl: "https://github.com/shadcn.png",
-                      profileUrl: "https://github.com/shadcn",
+                      imageUrl: 'https://github.com/shadcn.png',
+                      profileUrl: 'https://github.com/shadcn',
                     },
                     {
-                      imageUrl: "https://github.com/kentcdodds.png",
-                      profileUrl: "https://github.com/kentcdodds",
+                      imageUrl: 'https://github.com/kentcdodds.png',
+                      profileUrl: 'https://github.com/kentcdodds',
                     },
                     {
-                      imageUrl: "https://github.com/t3dotgg.png",
-                      profileUrl: "https://github.com/t3dotgg",
+                      imageUrl: 'https://github.com/t3dotgg.png',
+                      profileUrl: 'https://github.com/t3dotgg',
                     },
                   ]}
                 />
@@ -192,8 +192,8 @@ export default function HomePage() {
               disabled={isDownloading}
               className={`group relative flex items-center gap-2 rounded-full border border-[#3B3BF6] bg-[#1E1E1E] px-3 sm:px-4 py-1 text-xs sm:text-sm text-gray-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#3B3BF6]/50 ${
                 isDownloading
-                  ? "opacity-70 cursor-not-allowed"
-                  : "hover:shadow-[0_0_10px_#3B3BF6]"
+                  ? 'opacity-70 cursor-not-allowed'
+                  : 'hover:shadow-[0_0_10px_#3B3BF6]'
               }`}
             >
               {/* Content while downloading */}
@@ -210,8 +210,8 @@ export default function HomePage() {
                   <div
                     className={`flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full transition-all duration-300 ${
                       isDownloading
-                        ? "bg-gray-600"
-                        : "bg-[#3B3BF6] group-hover:bg-[#5050ff] group-hover:translate-x-0.5"
+                        ? 'bg-gray-600'
+                        : 'bg-[#3B3BF6] group-hover:bg-[#5050ff] group-hover:translate-x-0.5'
                     }`}
                   >
                     {/* Telegram icon */}

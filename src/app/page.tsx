@@ -1,21 +1,21 @@
-import { HackathonCard } from "@/components/hackathon-card";
-import { Marquee3D } from "@/components/magicui/3DMarquee";
-import BlurFade from "@/components/magicui/blur-fade";
-import { ResumeCard } from "@/components/resume-card";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
-import { Highlighter } from "@/components/ui/highlighter";
-import { DATA } from "@/data/resume";
-import { Aboutpage } from "./Pages/About";
-import ContactPage from "./Pages/contact";
-import Footer from "./Pages/Footer";
-import HomePage from "./Pages/Home";
-import ProjectPage from "./Pages/Project";
+import { HackathonCard } from '@/components/hackathon-card';
+import { Marquee3D } from '@/components/magicui/3DMarquee';
+import BlurFade from '@/components/magicui/blur-fade';
+import { ResumeCard } from '@/components/resume-card';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
+import { Highlighter } from '@/components/ui/highlighter';
+import { DATA } from '@/data/resume';
+import { Aboutpage } from './Pages/About';
+import ContactPage from './Pages/contact';
+import Footer from './Pages/Footer';
+import HomePage from './Pages/Home';
+import ProjectPage from './Pages/Project';
 const BLUR_FADE_DELAY = 0.06;
 
 export default function Page() {
   return (
     <>
-      <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 mx-auto px-4 sm:px-6 lg:px-8 font-sans">
         <section id="hero">
           <HomePage />
         </section>
@@ -47,7 +47,7 @@ export default function Page() {
           </BlurFade>
         </section>
         <section id="work">
-          <div className="flex min-h-0 flex-col gap-y-3">
+          <div className="flex min-h-0 flex-col gap-y-3 font-sans">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
               <h1 className="text-xl font-bold">Work Experience</h1>
             </BlurFade>
@@ -62,9 +62,8 @@ export default function Page() {
                   altText={work.company}
                   title={work.company}
                   subtitle={work.title}
-                  href={work.href}
                   badges={work.badges}
-                  period={`${work.start} - ${work.end ?? "Present"}`}
+                  period={`${work.start} - ${work.end ?? 'Present'}`}
                   description={work.description}
                 />
               </BlurFade>
@@ -72,7 +71,7 @@ export default function Page() {
           </div>
         </section>
         <section id="education">
-          <div className="flex min-h-0 flex-col gap-y-3">
+          <div className="flex min-h-0 flex-col gap-y-3 font-sans">
             <BlurFade delay={BLUR_FADE_DELAY * 7}>
               <h1 className="text-xl font-bold">Education</h1>
             </BlurFade>
@@ -83,7 +82,6 @@ export default function Page() {
               >
                 <ResumeCard
                   key={education.school}
-                  href={education.href}
                   logoUrl={education.logoUrl}
                   altText={education.school}
                   title={education.school}
@@ -118,7 +116,7 @@ export default function Page() {
                 className="mt-8 animate-in fade-in slide-in-from-bottom-6 duration-500 ease-out"
                 style={{
                   animationDelay: `${BLUR_FADE_DELAY * 9 * 1000}ms`,
-                  animationFillMode: "both",
+                  animationFillMode: 'both',
                 }}
               >
                 <Marquee3D />

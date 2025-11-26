@@ -248,12 +248,12 @@ export default function ProjectPage() {
               complex web applications. Here are a few of my favorites.
             </p>
             <p className="text-muted-foreground/60 text-xs sm:text-sm mt-3">
-              These projects are automatically fetched from{' '}
+              These projects are automatically fetched from{'         '}
               <Link
                 href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-muted-foreground transition-colors underline decoration-dotted underline-offset-2"
+                className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-bold transition-colors"
               >
                 GitHub ✨
               </Link>
@@ -427,7 +427,7 @@ export default function ProjectPage() {
                           </div>
                         }
                       >
-                        <ShadCard className="group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-background/80 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-2xl">
+                        <ShadCard className="group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-white/30 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-gray-300 dark:hover:border-white/50 hover:bg-white/10">
                           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                           <CardHeader className="pb-4 pt-5 px-5">
                             <div className="flex items-start justify-between gap-3">
@@ -443,7 +443,7 @@ export default function ProjectPage() {
                                 </CardDescription>
                               </div>
                               <div
-                                className={`${color} rounded-lg p-2.5 shadow-lg shrink-0`}
+                                className={`${color} rounded-lg p-2.5 shrink-0`}
                               >
                                 <Icon className="h-5 w-5 text-white" />
                               </div>
@@ -457,8 +457,8 @@ export default function ProjectPage() {
                                   variant="secondary"
                                   className={`${
                                     LANGUAGE_COLORS[repo.language] ||
-                                    'bg-gray-500'
-                                  } text-white`}
+                                    'bg-black dark:bg-white'
+                                  } text-white dark:text-black`}
                                 >
                                   <Code2 className="h-3 w-3 mr-1" />
                                   {repo.language}
@@ -575,7 +575,7 @@ export default function ProjectPage() {
                 <BlurFade delay={BLUR_FADE_DELAY * 6}>
                   <div className="flex items-center justify-center gap-4 mb-10">
                     <div
-                      className={`${color} p-3.5 rounded-xl shadow-lg shadow-black/10`}
+                      className={`${color} p-3.5 rounded-xl backdrop-blur-sm bg-gradient-to-br`}
                     >
                       <Icon className="h-6 w-6 text-white" />
                     </div>
@@ -599,7 +599,8 @@ export default function ProjectPage() {
                     const category = getCategoryFromRepo(repo);
                     const categoryInfo = PROJECT_CATEGORIES[category];
                     const languageColor =
-                      LANGUAGE_COLORS[repo.language || ''] || 'bg-gray-500';
+                      LANGUAGE_COLORS[repo.language || ''] ||
+                      'bg-black dark:bg-white';
 
                     return (
                       <BlurFade
@@ -627,7 +628,7 @@ export default function ProjectPage() {
                               </div>
                             }
                           >
-                            <ShadCard className="group relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-background/80 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-2xl">
+                            <ShadCard className="group relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-white/30 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-gray-300 dark:hover:border-white/50 hover:bg-white/10">
                               <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                               <CardHeader className="pb-4 space-y-3 pt-5 px-5">
                                 <div className="flex items-start justify-between gap-3">
@@ -646,7 +647,7 @@ export default function ProjectPage() {
                                   </Link>
                                   {categoryInfo && (
                                     <div
-                                      className={`${categoryInfo.color} p-2 rounded-lg shadow-sm flex-shrink-0 transition-none`}
+                                      className={`${categoryInfo.color} p-2 rounded-lg flex-shrink-0 transition-none`}
                                       title={categoryInfo.label}
                                     >
                                       <categoryInfo.icon className="h-4 w-4 text-white" />
@@ -666,7 +667,10 @@ export default function ProjectPage() {
                                       className={`${categoryInfo.lightColor} inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${categoryInfo.textColor}`}
                                     >
                                       <span
-                                        className={`w-2 h-2 rounded-full ${languageColor}`}
+                                        className={`w-2 h-2 rounded-full ${
+                                          languageColor ||
+                                          'bg-black dark:bg-white'
+                                        }`}
                                       />
                                       {repo.language}
                                     </div>
@@ -771,7 +775,7 @@ export default function ProjectPage() {
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="relative bg-card max-w-lg w-full rounded-2xl border border-border shadow-2xl animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto"
+            className="relative bg-white/5 backdrop-blur-2xl max-w-lg w-full rounded-2xl border-2 border-gray-200 dark:border-white/30 animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -798,7 +802,8 @@ export default function ProjectPage() {
                 <div className="flex items-center gap-2 text-sm">
                   <span
                     className={`w-3 h-3 rounded-full ${
-                      LANGUAGE_COLORS[selectedRepo.language] || 'bg-gray-500'
+                      LANGUAGE_COLORS[selectedRepo.language] ||
+                      'bg-black dark:bg-white'
                     }`}
                   ></span>
                   <span className="font-medium">{selectedRepo.language}</span>
