@@ -5,14 +5,14 @@ import { TextAnimate } from "@/components/ui/text-animate";
 import { useToast } from "@/components/ui/toast";
 import { cn } from "@/lib/utils";
 import {
-  BookOpen,
-  Briefcase,
-  Check,
-  Handshake,
-  Laptop,
-  Loader2,
-  Sparkles,
-  Target,
+    BookOpen,
+    Briefcase,
+    Check,
+    Handshake,
+    Laptop,
+    Loader2,
+    Sparkles,
+    Target,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -260,7 +260,12 @@ export default function ContactForm() {
 
                 {selectedMessageIndex !== null && (
                   <div className="mt-4 text-left pl-1">
-                    <div className="text-sm leading-relaxed">
+                    <div
+                      className={cn(
+                        'text-sm leading-relaxed',
+                        predefinedMessages[selectedMessageIndex].color
+                      )}
+                    >
                       <TextAnimate animation="blurInUp" by="character" once>
                         {predefinedMessages[selectedMessageIndex].message}
                       </TextAnimate>
