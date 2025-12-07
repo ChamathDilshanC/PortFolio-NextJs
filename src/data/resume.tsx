@@ -3,9 +3,9 @@ import { Icons } from '../components/icons';
 
 export const DATA = {
   name: 'Chamath Dilshan',
-  detail: 'Software Engineer turned Entrepreneur',
+  detail: 'Software Engineer turned Entrepreneur.',
   initials: 'CD',
-  url: 'https://dillion.io',
+  url: 'https://chamathdilshan.com',
   location: 'Sri Lanka , Colombo',
   locationLink: 'https://www.google.com/maps/place/sanfrancisco',
   description:
@@ -22,7 +22,7 @@ export const DATA = {
         " while working on real-world projects that solve actual problems. I've built everything from expense tracking mobile apps to utility monitoring platforms for Sri Lanka, and I love the challenge of turning complex requirements into clean, user-friendly solutions.",
     },
   },
-  avatarUrl: '/me.png',
+  avatarUrl: '/Bg/me.jpg',
   skills: [
     'React',
     'Next.js',

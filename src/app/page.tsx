@@ -4,7 +4,6 @@ import BlurFade from '@/components/magicui/blur-fade';
 import { ResumeCard } from '@/components/resume-card';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/scroll-reveal';
 import { FollowerPointerCard } from '@/components/ui/following-pointer';
-import { Highlighter } from '@/components/ui/highlighter';
 import { DATA } from '@/data/resume';
 import { Aboutpage } from './Pages/About';
 import ContactPage from './Pages/contact';
@@ -24,27 +23,8 @@ export default function Page() {
         <ScrollReveal direction="up" delay={0.2}>
           <section id="about">
             <BlurFade delay={BLUR_FADE_DELAY * 3}>
-              <h2 className="text-xl font-bold">About Me</h2>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 4}>
-              <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                <p>
-                  {DATA.summary.parts.intro}
-                  <span className="dark:text-white">
-                    <Highlighter action="highlight" color="#48dbfb">
-                      {DATA.summary.parts.role}
-                    </Highlighter>
-                  </span>
-                  {DATA.summary.parts.middle}
-                  {DATA.summary.parts.education}
-
-                  {DATA.summary.parts.outro}
-                </p>
-              </div>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 3}>
               {/* Terminal About Section */}
-              <div className="not-prose mt-6">
+              <div className="not-prose">
                 <Aboutpage />
               </div>
             </BlurFade>

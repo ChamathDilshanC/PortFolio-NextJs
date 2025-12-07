@@ -1,15 +1,15 @@
 "use client"
 
-import {
-  Children,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
 import { motion, MotionProps, useInView } from "motion/react"
+import {
+    Children,
+    createContext,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -228,7 +228,7 @@ export const Terminal = ({
     <div
       ref={containerRef}
       className={cn(
-        "border-border bg-background z-0 h-full max-h-[400px] w-full max-w-lg rounded-xl border",
+        "border-border bg-background z-0 h-full max-h-[400px] w-full rounded-xl border",
         className
       )}
     >
