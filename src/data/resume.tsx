@@ -6,10 +6,10 @@ export const DATA = {
   detail: 'Software Engineer turned Entrepreneur.',
   initials: 'CD',
   url: 'https://chamathdilshan.com',
-  location: 'Sri Lanka , Colombo',
+  location: 'Colombo ,  Sri Lanka',
   locationLink: 'https://www.google.com/maps/place/sanfrancisco',
   description:
-    'Software Engineer turned Entrepreneur. I love building things and helping people. Very active on LinkedIn.',
+    'Software Engineer turned Entrepreneur I love building things and helping people. Very active on LinkedIn.',
   summary: {
     full: "I'm currently a Trainee Software Engineer at IJSE, where I'm honing my skills in full-stack development and building scalable web applications. Right now, I'm pursuing a BSc (Hons) in Computer Science while working on real-world projects that solve actual problems. I've built everything from expense tracking mobile apps to utility monitoring platforms for Sri Lanka, and I love the challenge of turning complex requirements into clean, user-friendly solutions.",
     parts: {

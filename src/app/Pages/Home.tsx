@@ -97,7 +97,7 @@ export default function HomePage() {
                     showBorder={false}
                     className="inline"
                   >
-                    Software Engineer turned Entrepreneur
+                    Software Engineer turned Entrepreneur.
                   </GradientText>
                   <TextAnimate
                     animation="blurInUp"
@@ -106,7 +106,7 @@ export default function HomePage() {
                     delay={0.2}
                     className="inline"
                   >
-                    . I love building things and helping people. Very active on
+                    I love building things and helping people. Very active on
                   </TextAnimate>
                   {' '}
                   <a

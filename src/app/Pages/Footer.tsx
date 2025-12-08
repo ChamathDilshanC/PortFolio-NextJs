@@ -95,21 +95,19 @@ export default function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       <div className="container mx-auto px-6 py-16 space-y-12">
         <div className="flex flex-col gap-4 text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <button className="inline-flex w-full items-center justify-between gap-3 rounded-full border border-white/10 px-5 py-2 text-left text-sm font-medium text-foreground transition hover:border-[#070edf] dark:hover:border-[#00b3ff] md:w-auto">
-            <span className="inline-flex items-center gap-2">
-              <Icons.globe className="h-4 w-4" />
-              English
-            </span>
-          </button>
           <div className="flex items-center gap-2 text-foreground/80">
             <Icons.globe className="h-4 w-4" />
+            <span>English</span>
+          </div>
+                    <div className="flex items-center gap-2 text-foreground/80">
+            <Icons.mapPin className="h-4 w-4" />
             <span>{DATA.location}</span>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 border-y border-white/10 py-6 text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-foreground/60">
-            Follow me on
+            Follow me on ❤️
           </p>
           <div className="flex flex-wrap items-center gap-4">
             {socialLinks.map((social) => {

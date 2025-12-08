@@ -333,7 +333,7 @@ export default function ProjectPage() {
               <div className="flex flex-wrap gap-2.5 justify-center">
                 <Badge
                   variant={languageFilter === 'all' ? 'default' : 'outline'}
-                  className={`cursor-pointer transition-all hover:scale-105 hover:shadow-sm px-3.5 py-1.5 ${
+                  className={`cursor-pointer transition-all px-3.5 py-1.5 ${
                     languageFilter === 'all' ? '' : 'hover:bg-accent'
                   }`}
                   onClick={() => setLanguageFilter('all')}
@@ -344,7 +344,7 @@ export default function ProjectPage() {
                   <Badge
                     key={lang}
                     variant={languageFilter === lang ? 'default' : 'outline'}
-                    className={`cursor-pointer transition-all hover:scale-105 hover:shadow-sm px-3.5 py-1.5 ${
+                    className={`cursor-pointer transition-all px-3.5 py-1.5 ${
                       languageFilter === lang ? '' : 'hover:bg-accent'
                     }`}
                     onClick={() => setLanguageFilter(lang)}
@@ -388,15 +388,9 @@ export default function ProjectPage() {
       {/* Showcase Cards View - Only repos with "showcase" topic */}
       {!loading && viewMode === 'expandable' && showcaseCards.length > 0 && (
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <div className="relative overflow-hidden">
-            {/* Left/Right fade edges for marquee */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-14 z-10 bg-gradient-to-r from-background to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-14 z-10 bg-gradient-to-l from-background to-transparent" />
-
-            <Marquee
-              pauseOnHover
-              className="[--gap:1.25rem] [--duration:38s] px-1 sm:px-2"
-            >
+          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-32">
+            {/* Single row marquee with all showcase cards */}
+            <Marquee pauseOnHover className="[--duration:20s] [--gap:1.25rem]">
               {showcaseCards.map((repo, idx) => {
                 const category = getCategoryFromRepo(repo);
                 const {
@@ -410,142 +404,137 @@ export default function ProjectPage() {
                 return (
                   <div
                     key={repo.id}
-                    className="shrink-0 w-[320px] sm:w-[420px] cursor-pointer"
+                    className="w-[320px] sm:w-[420px] cursor-pointer"
+                    style={{ isolation: 'isolate' }}
                     onClick={() => {
                       setSelectedRepo(repo);
                       setIsModalOpen(true);
                     }}
                   >
-                    <BlurFade delay={BLUR_FADE_DELAY * (idx + 6)}>
-                      <FollowerPointerCard
-                        title={
-                          <div className="flex items-center gap-2">
-                            <Icon className="h-3.5 w-3.5" />
-                            <span className="font-semibold">
-                              {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
-                            </span>
+                    <FollowerPointerCard
+                      title={
+                        <div className="flex items-center gap-2">
+                          <Icon className="h-3.5 w-3.5" />
+                          <span className="font-semibold">
+                            {repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}
+                          </span>
+                        </div>
+                      }
+                    >
+                      <ShadCard className="relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-white/30 bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl">
+                        <CardHeader className="pb-4 pt-5 px-5 relative z-10">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex-1 min-w-0">
+                              <CardTitle className="text-xl font-bold mb-2 line-clamp-2 break-words transition-colors duration-300">
+                                {repo.name
+                                  .replace(/-/g, ' ')
+                                  .replace(/_/g, ' ')}
+                              </CardTitle>
+                              <CardDescription className="line-clamp-3 text-sm break-words min-h-[3.5rem]">
+                                {repo.description ||
+                                  'No description available'}
+                              </CardDescription>
+                            </div>
+                            <div
+                              className={`${color} rounded-xl p-2.5 shrink-0 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}
+                            >
+                              <Icon className="h-5 w-5 text-white" />
+                            </div>
                           </div>
-                        }
-                      >
-                        <ShadCard className="group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-white/40 hover:shadow-[0_20px_60px_-15px_rgba(59,59,246,0.3)] dark:hover:shadow-[0_20px_60px_-15px_rgba(59,59,246,0.5)]">
-                          {/* Animated gradient overlay */}
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                        </CardHeader>
 
-                          {/* Shine effect */}
-                          <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                          </div>
-
-                          <CardHeader className="pb-4 pt-5 px-5 relative z-10">
-                            <div className="flex items-start justify-between gap-3">
-                              <div className="flex-1 min-w-0">
-                                <CardTitle className="text-xl font-bold mb-2 line-clamp-2 break-words group-hover:text-primary transition-colors duration-300">
-                                  {repo.name
-                                    .replace(/-/g, ' ')
-                                    .replace(/_/g, ' ')}
-                                </CardTitle>
-                                <CardDescription className="line-clamp-3 text-sm break-words min-h-[3.5rem]">
-                                  {repo.description ||
-                                    'No description available'}
-                                </CardDescription>
-                              </div>
-                              <div
-                                className={`${color} rounded-xl p-2.5 shrink-0 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}
+                        <CardContent className="flex-1 pb-5 px-5 relative z-10">
+                          <div className="flex flex-wrap gap-2">
+                            {repo.language && (
+                              <Badge
+                                variant="secondary"
+                                className={`${
+                                  LANGUAGE_COLORS[repo.language] ||
+                                  'bg-black dark:bg-white'
+                                } text-white dark:text-black`}
                               >
-                                <Icon className="h-5 w-5 text-white" />
-                              </div>
-                            </div>
-                          </CardHeader>
-
-                          <CardContent className="flex-1 pb-5 px-5 relative z-10">
-                            <div className="flex flex-wrap gap-2">
-                              {repo.language && (
-                                <Badge
-                                  variant="secondary"
-                                  className={`${
-                                    LANGUAGE_COLORS[repo.language] ||
-                                    'bg-black dark:bg-white'
-                                  } text-white dark:text-black shadow-md hover:shadow-lg transition-shadow duration-300`}
-                                >
-                                  <Code2 className="h-3 w-3 mr-1" />
-                                  {repo.language}
-                                </Badge>
-                              )}
-                              <Badge variant="secondary" className={`${textColor} shadow-md hover:shadow-lg transition-shadow duration-300`}>
-                                <Icon className="h-3 w-3 mr-1" />
-                                {
-                                  PROJECT_CATEGORIES[
-                                    category as keyof typeof PROJECT_CATEGORIES
-                                  ]?.label
-                                }
+                                <Code2 className="h-3 w-3 mr-1" />
+                                {repo.language}
                               </Badge>
-                            </div>
-                          </CardContent>
+                            )}
+                            <Badge variant="secondary" className={`${textColor}`}>
+                              <Icon className="h-3 w-3 mr-1" />
+                              {
+                                PROJECT_CATEGORIES[
+                                  category as keyof typeof PROJECT_CATEGORIES
+                                ]?.label
+                              }
+                            </Badge>
+                          </div>
+                        </CardContent>
 
-                          <CardFooter className="mt-auto border-t border-white/10 pt-4 pb-4 px-5 relative z-10">
-                            <div className="w-full text-sm text-muted-foreground flex flex-col gap-3">
-                              <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1.5 hover:text-primary transition-colors duration-200">
-                                  <Star className="h-4 w-4" />
-                                  <span className="font-medium">
-                                    {repo.stargazers_count}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-1.5 hover:text-primary transition-colors duration-200">
-                                  <GitFork className="h-4 w-4" />
-                                  <span className="font-medium">
-                                    {repo.forks_count}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-1.5 ml-auto">
-                                  <Clock className="h-4 w-4" />
-                                  <span className="text-xs">
-                                    {formatLastUpdated(repo.updated_at)}
-                                  </span>
-                                </div>
+                        <CardFooter className="mt-auto border-t border-white/10 pt-4 pb-4 px-5 relative z-10">
+                          <div className="w-full text-sm text-muted-foreground flex flex-col gap-3">
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-1.5 transition-colors duration-200">
+                                <Star className="h-4 w-4" />
+                                <span className="font-medium">
+                                  {repo.stargazers_count}
+                                </span>
                               </div>
-                              <div className="flex items-center gap-2 justify-end">
-                                {getLiveSiteUrl(repo) && (
-                                  <Link
-                                    href={getLiveSiteUrl(repo)!}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    <Button
-                                      size="sm"
-                                      variant="default"
-                                      className="h-8 px-3 shadow-md hover:shadow-lg transition-all duration-300"
-                                    >
-                                      Live site
-                                    </Button>
-                                  </Link>
-                                )}
+                              <div className="flex items-center gap-1.5 transition-colors duration-200">
+                                <GitFork className="h-4 w-4" />
+                                <span className="font-medium">
+                                  {repo.forks_count}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-1.5 ml-auto">
+                                <Clock className="h-4 w-4" />
+                                <span className="text-xs">
+                                  {formatLastUpdated(repo.updated_at)}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 justify-end">
+                              {getLiveSiteUrl(repo) && (
                                 <Link
-                                  href={repo.html_url}
+                                  href={getLiveSiteUrl(repo)!}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
                                   <Button
                                     size="sm"
-                                    variant="outline"
-                                    className="h-8 px-3 hover:bg-white/10 transition-all duration-300"
+                                    variant="default"
+                                    className="h-8 px-3 shadow-md hover:shadow-lg transition-all duration-300"
                                   >
-                                    <span className="flex items-center gap-1">
-                                      View repo
-                                      <ExternalLink className="h-3.5 w-3.5" />
-                                    </span>
+                                    Live site
                                   </Button>
                                 </Link>
-                              </div>
+                              )}
+                              <Link
+                                href={repo.html_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="h-8 px-3 hover:bg-white/10 transition-all duration-300"
+                                >
+                                  <span className="flex items-center gap-1">
+                                    View repo
+                                    <ExternalLink className="h-3.5 w-3.5" />
+                                  </span>
+                                </Button>
+                              </Link>
                             </div>
-                          </CardFooter>
-                        </ShadCard>
-                      </FollowerPointerCard>
-                    </BlurFade>
+                          </div>
+                        </CardFooter>
+                      </ShadCard>
+                    </FollowerPointerCard>
                   </div>
                 );
               })}
             </Marquee>
+
+            {/* Fade edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
           </div>
         </BlurFade>
       )}
@@ -635,9 +624,9 @@ export default function ProjectPage() {
                               </div>
                             }
                           >
-                            <ShadCard className="group relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-white/40 hover:shadow-[0_20px_60px_-15px_rgba(59,59,246,0.3)] dark:hover:shadow-[0_20px_60px_-15px_rgba(59,59,246,0.5)]">
+                            <ShadCard className="group relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-white/30 bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-gray-300 dark:hover:border-white/50 hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.1)] dark:hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.15)]">
                               {/* Animated gradient overlay */}
-                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                               {/* Shine effect */}
                               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">

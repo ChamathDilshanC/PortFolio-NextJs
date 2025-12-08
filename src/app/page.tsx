@@ -15,7 +15,7 @@ const BLUR_FADE_DELAY = 0.06;
 export default function Page() {
   return (
     <>
-      <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 mx-auto px-4 sm:px-6 lg:px-8 font-sans">
+      <main className="flex flex-col min-h-[100dvh] space-y-10 w-full sm:w-1/2 max-w-full mx-auto px-4 sm:px-6 lg:px-8 font-sans">
         <section id="hero">
           <HomePage />
         </section>
@@ -146,7 +146,7 @@ export default function Page() {
                 <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
                   <StaggerContainer staggerDelay={0.1}>
                     {DATA.services.map((service, id) => (
-                      <StaggerItem key={service.title}>
+                      <StaggerItem key={`service-${id}-${service.title}`}>
                         <FollowerPointerCard
                           title={
                             <div className="flex items-center gap-2">

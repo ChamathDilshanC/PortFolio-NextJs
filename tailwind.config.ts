@@ -123,6 +123,14 @@ const config = {
             transform: "translateY(-20px)",
           },
         },
+        "scroll-horizontal": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(-50%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +144,7 @@ const config = {
         "spin-around": "spin-around var(--speed) infinite linear",
         float: "float 3s ease-in-out infinite",
         "spin-slow": "spin 8s linear infinite",
+        "scroll-horizontal": "scroll-horizontal 12s linear infinite",
       },
     },
   },
