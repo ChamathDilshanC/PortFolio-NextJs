@@ -24,6 +24,15 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
 
+/* Scale content to 67% on laptop/desktop screens */
+@media (min-width: 1024px) {
+  body {
+    zoom: 0.67;
+    -moz-transform: scale(0.67);
+    -moz-transform-origin: 0 0;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
