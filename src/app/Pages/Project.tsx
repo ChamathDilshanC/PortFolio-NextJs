@@ -390,7 +390,7 @@ export default function ProjectPage() {
         <BlurFade delay={BLUR_FADE_DELAY * 5}>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mb-32">
             {/* Single row marquee with all showcase cards */}
-            <Marquee pauseOnHover repeat={2} className="[--duration:20s] [--gap:1.25rem]">
+            <Marquee pauseOnHover repeat={4} className="[--duration:20s] [--gap:1.25rem]">
               {showcaseCards.map((repo, idx) => {
                 const category = getCategoryFromRepo(repo);
                 const {
