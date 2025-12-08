@@ -24,11 +24,11 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
 
-/* Scale content to 67% on laptop/desktop screens */
+/* Scale content to 100% on laptop/desktop screens */
 @media (min-width: 1024px) {
   body {
-    zoom: 0.67;
-    -moz-transform: scale(0.67);
+    zoom: 1.0;
+    -moz-transform: scale(1.0);
     -moz-transform-origin: 0 0;
   }
 }
