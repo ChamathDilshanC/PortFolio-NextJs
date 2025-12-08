@@ -10,6 +10,12 @@ const config = {
     "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
+  safelist: [
+    'animate-marquee',
+    'animate-marquee-vertical',
+    '[animation-direction:reverse]',
+    'group-hover:[animation-play-state:paused]',
+  ],
   theme: {
     container: {
       center: true,
