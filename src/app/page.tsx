@@ -21,27 +21,7 @@ export default function Page() {
         </section>
         <section id="about">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About Me</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-              <p>
-                {DATA.summary.parts.intro}
-                <span className="dark:text-white">
-                  <Highlighter action="highlight" color="#48dbfb">
-                    {DATA.summary.parts.role}
-                  </Highlighter>
-                </span>
-                {DATA.summary.parts.middle}
-                {DATA.summary.parts.education}
-
-                {DATA.summary.parts.outro}
-              </p>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            {/* Terminal About Section */}
-            <div className="not-prose mt-6">
+            <div className="not-prose">
               <Aboutpage />
             </div>
           </BlurFade>
